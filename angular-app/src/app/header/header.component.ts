@@ -11,4 +11,10 @@ export class HeaderComponent {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
+  getMenuClasses() {
+    return {
+      menu: true,
+      show: this.isMenuOpen,
+    };
+  }
 }

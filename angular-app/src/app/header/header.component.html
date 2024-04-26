@@ -9,9 +9,7 @@
           <li><a href="">Blog</a></li>
           <li><a href="">Seller</a></li>
         </ul>
-        <button (click)="toggleMenu()">
-          <i class="fa-solid fa-bars fa-2xl"></i>
-        </button>
+
         <div *ngIf="isMenuOpen" class="menu">
           <ul>
             <li>Home</li>
@@ -37,6 +35,9 @@
           <h6>Hello,</h6>
           <a href="">My Account</a>
         </div>
+        <button (click)="toggleMenu()">
+          <i class="fa-solid fa-bars fa-2xl"></i>
+        </button>
       </div>
     </div>
   </div>
