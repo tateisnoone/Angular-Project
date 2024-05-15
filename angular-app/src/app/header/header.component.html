@@ -1,11 +1,11 @@
 <div class="header">
   <div class="container">
     <div class="flex">
-      <h1>PIXIE</h1>
+      <a routerLink="/"> <h1>PIXIE</h1> </a>
       <nav>
         <ul>
           <li><a href="">Home</a></li>
-          <li><a href="">Shop</a></li>
+          <li><a routerLink="/shop">Shop</a></li>
           <li><a href="">Blog</a></li>
           <li><a href="">Seller</a></li>
         </ul>
@@ -21,19 +21,15 @@
       </nav>
       <div class="leftside">
         <a href="">
-          <i class="fa-regular fa-bookmark fa-lg" style="color: #000000"></i>
-        </a>
-        <div class="line"></div>
-        <a href="">
           <i class="fa-solid fa-cart-shopping fa-lg" style="color: #000000"></i>
         </a>
         <div class="line"></div>
-        <a href="">
+        <a routerLink="/login">
           <i class="fa-regular fa-user fa-lg" style="color: #000000"></i>
         </a>
         <div class="text">
           <h6>Hello,</h6>
-          <a href="">My Account</a>
+          <p>My Account</p>
         </div>
         <button (click)="toggleMenu()">
           <i class="fa-solid fa-bars fa-2xl"></i>

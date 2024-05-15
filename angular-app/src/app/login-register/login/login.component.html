@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>Login</h2>
+  <p>If you have an account, sign in with your email address.</p>
+  <form [formGroup]="loginForm">
+    <label for="email">Email</label>
+    <input formControlName="mail" type="email" />
+    <label for="password">Password</label>
+    <input formControlName="password" type="password" />
+  </form>
+  <button>Log in</button>
+  <button routerLink="/register">Register</button>
+</div>

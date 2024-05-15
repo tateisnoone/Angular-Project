@@ -1,0 +1,50 @@
+<div class="container">
+  <h2>Register</h2>
+  <form [formGroup]="registerForm">
+    <label for="name">Name</label>
+    <input
+      [ngClass]="{ error: (registerForm.get('name')?.errors?.['minlength'] || registerForm.get('name')?.errors?.['required']) && registerForm.get('name')?.touched }"
+      formControlName="name"
+      type="text"
+    />
+    <app-err-msg
+      *ngIf="registerForm.get('name')?.errors?.['minlength']"
+      message="Min Length Error"
+    >
+    </app-err-msg>
+    <label for="email">Email</label>
+    <input
+      [ngClass]="{ 'input-error': hasFormControlError('email') }"
+      formControlName="email"
+      type="text"
+      placeholder="Email Address"
+    />
+    <app-err-msg
+      *ngIf="
+        hasFormControlError('email') &&
+        registerForm.get('email')?.hasError('email')
+      "
+      message="არასწორი მეილის ფორმატი"
+    ></app-err-msg>
+    <div formGroupName="passwordGroup">
+      <label for="password">Password*</label>
+      <input
+        [ngClass]="{ 'input-error': hasFormControlError('password') }"
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+      />
+      <app-err-msg
+        *ngIf="
+          hasPasswordGroupError('password') &&
+          registerForm.get('password')?.hasError('password')
+        "
+        message="არასწორი პაროლის ფორმატი"
+      ></app-err-msg>
+      <label for="confirmPassword">Confirm Password*</label>
+      <input formControlName="confirmPassword" type="password" />
+    </div>
+    <button type="submit" (click)="register()">Register</button>
+    <button routerLink="/login">Log In</button>
+  </form>
+</div>
