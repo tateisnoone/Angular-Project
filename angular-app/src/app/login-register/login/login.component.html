@@ -3,10 +3,50 @@
   <p>If you have an account, sign in with your email address.</p>
   <form [formGroup]="loginForm">
     <label for="email">Email</label>
-    <input formControlName="mail" type="email" />
+    <input
+      [ngClass]="{ 'input-error': hasFormControlError('email') }"
+      formControlName="email"
+      type="text"
+      placeholder="Email Address"
+    />
+    <app-err-msg
+      *ngIf="
+        hasFormControlError('email') &&
+        loginForm.get('email')?.hasError('required')
+      "
+      message="Email is required"
+    ></app-err-msg>
+    <app-err-msg
+      *ngIf="
+        hasFormControlError('email') &&
+        loginForm.get('email')?.hasError('email')
+      "
+      message="Wrong email format"
+    ></app-err-msg>
     <label for="password">Password</label>
-    <input formControlName="password" type="password" />
+    <input
+      [ngClass]="{ 'input-error': hasFormControlError('password') }"
+      formControlName="password"
+      type="password"
+      placeholder="Password"
+    />
+    <app-err-msg
+      *ngIf="
+        hasFormControlError('password') &&
+        loginForm.get('password')?.hasError('required')
+      "
+      message="Password is required"
+    ></app-err-msg>
+    <app-err-msg
+      *ngIf="
+        hasFormControlError('password') &&
+        loginForm.get('password')?.hasError('minlength')
+      "
+      message="Password must be at least 6 characters long"
+    ></app-err-msg>
   </form>
-  <button>Log in</button>
-  <button routerLink="/register">Register</button>
+  <button [disabled]="loginForm.invalid">Log in</button>
+  <div class="register">
+    Not a member? <a routerLink="/register">Register</a>
+  </div>
 </div>

@@ -1,50 +1,82 @@
 <div class="container">
   <h2>Register</h2>
   <form [formGroup]="registerForm">
-    <label for="name">Name</label>
+    <label for="fullName">Full Name</label>
     <input
-      [ngClass]="{ error: (registerForm.get('name')?.errors?.['minlength'] || registerForm.get('name')?.errors?.['required']) && registerForm.get('name')?.touched }"
-      formControlName="name"
       type="text"
+      formControlName="fullName"
+      name="fullName"
+      placeholder="Type your full name"
     />
-    <app-err-msg
-      *ngIf="registerForm.get('name')?.errors?.['minlength']"
-      message="Min Length Error"
-    >
-    </app-err-msg>
+    <small *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)">
+      <div class="error-message" *ngIf="fullName.errors?.['required']">
+        Full name is required
+      </div>
+      <div class="error-message" *ngIf="fullName.errors?.['pattern']">
+        Full name should include first and last name
+      </div>
+    </small>
     <label for="email">Email</label>
     <input
-      [ngClass]="{ 'input-error': hasFormControlError('email') }"
+      type="email"
       formControlName="email"
-      type="text"
-      placeholder="Email Address"
+      name="email"
+      placeholder="Type your email"
     />
-    <app-err-msg
+    <small *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div class="error-message" *ngIf="email.errors?.['required']">
+        Email is required
+      </div>
+      <div class="error-message" *ngIf="email.errors?.['email']">
+        Incorrect email format
+      </div>
+    </small>
+    <!-- <div formGroupName="passwordGroup">  -->
+    <label for="password">Password</label>
+    <input
+      type="password"
+      formControlName="password"
+      name="password"
+      placeholder="Type password"
+    />
+    <small *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div class="error-message" *ngIf="password.errors?.['required']">
+        Password is required
+      </div>
+    </small>
+    <label for="cofirmPassword">Confirm Password</label>
+    <input
+      type="password"
+      formControlName="confirmPassword"
+      name="confirmPassword"
+      placeholder="Confirm password"
+    />
+    <small
       *ngIf="
-        hasFormControlError('email') &&
-        registerForm.get('email')?.hasError('email')
+        confirmPassword.invalid &&
+        (confirmPassword.dirty || confirmPassword.touched)
       "
-      message="არასწორი მეილის ფორმატი"
-    ></app-err-msg>
-    <div formGroupName="passwordGroup">
-      <label for="password">Password*</label>
-      <input
-        [ngClass]="{ 'input-error': hasFormControlError('password') }"
-        formControlName="password"
-        type="password"
-        placeholder="Password"
-      />
-      <app-err-msg
-        *ngIf="
-          hasPasswordGroupError('password') &&
-          registerForm.get('password')?.hasError('password')
-        "
-        message="არასწორი პაროლის ფორმატი"
-      ></app-err-msg>
-      <label for="confirmPassword">Confirm Password*</label>
-      <input formControlName="confirmPassword" type="password" />
+    >
+      <div class="error-message" *ngIf="confirmPassword.errors?.['required']">
+        Confirm the Password
+      </div>
+    </small>
+    <small
+      class="error-message"
+      *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
+    >
+      Password should match
+    </small>
+    <!-- </div> -->
+    <button
+      type="submit"
+      (click)="register()"
+      [disabled]="registerForm.invalid"
+    >
+      Register
+    </button>
+    <div class="register">
+      Already registered? <a routerLink="/login">Log In</a>
     </div>
-    <button type="submit" (click)="register()">Register</button>
-    <button routerLink="/login">Log In</button>
   </form>
 </div>

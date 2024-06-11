@@ -4,7 +4,7 @@ footer {
     height: 449px;
   }
   .bluefooter {
-    background-color: #417394;
+    background-color: grey;
     height: 397px;
     padding-top: 104px;
     @media (max-width: 525px) {
@@ -36,6 +36,10 @@ footer {
         flex-wrap: nowrap;
         height: 294px;
         width: 517px;
+        img {
+          width: 100px;
+          height: 55px;
+        }
         @media (max-width: 945px) {
           width: 50%;
         }
@@ -64,7 +68,7 @@ footer {
           justify-content: flex-start;
           align-items: flex-start;
           flex-wrap: nowrap;
-          background-color: #fcd980;
+          background-color: #e75999;
           width: 517px;
           height: 95px;
           padding-top: 18px;

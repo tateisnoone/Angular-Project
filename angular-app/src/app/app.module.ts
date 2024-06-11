@@ -16,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ShopComponent } from './shop/shop.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ErrMsgComponent } from './shared/err-msg/err-msg.component';
+//import { AuthComponent } from './services/auth.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ErrMsgComponent } from './shared/err-msg/err-msg.component';
     ShopComponent,
     NotFoundComponent,
     ErrMsgComponent,
+    //AuthComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [provideClientHydration()],

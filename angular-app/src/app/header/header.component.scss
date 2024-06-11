@@ -12,12 +12,16 @@
   opacity: 0px;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid #417394;
+  border-bottom: 2px solid #c51765;
   .container {
     max-width: 1600px;
     width: 95%;
     margin: 0 auto;
     .flex {
+      img {
+        width: 100px;
+        height: 55px;
+      }
       display: flex;
       flex-direction: row;
       justify-content: space-around;

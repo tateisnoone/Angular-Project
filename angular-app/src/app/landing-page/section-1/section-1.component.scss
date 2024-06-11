@@ -1,7 +1,7 @@
 .section-1 {
   width: 100%;
   height: 558px;
-  background-image: url("/assets/section1.jpeg");
+  background-image: url("/assets/Front.png");
   background-color: whitesmoke;
   background-size: cover;
   display: flex;
@@ -19,7 +19,7 @@
       font-weight: 400;
       line-height: 19.2px;
       letter-spacing: 2.200000047683716px;
-      color: #ff4f4f;
+      color: #c51765;
     }
     h1 {
       font-family: Helvetica, sans-serif;
@@ -47,9 +47,14 @@
       gap: 0px;
       border-radius: 4px;
       opacity: 0px;
-      background-color: #417394;
+      background-color: #c51765;
       border: none;
       cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    button:hover {
+      transform: scale(1.1);
+      background-color: #bf4a7f;
     }
   }
 }
