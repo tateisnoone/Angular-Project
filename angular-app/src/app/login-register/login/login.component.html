@@ -1,52 +1,37 @@
 <div class="container">
   <h2>Login</h2>
   <p>If you have an account, sign in with your email address.</p>
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
     <label for="email">Email</label>
     <input
-      [ngClass]="{ 'input-error': hasFormControlError('email') }"
+      type="email"
       formControlName="email"
-      type="text"
-      placeholder="Email Address"
+      name="email"
+      placeholder="Type your email"
     />
-    <app-err-msg
-      *ngIf="
-        hasFormControlError('email') &&
-        loginForm.get('email')?.hasError('required')
-      "
-      message="Email is required"
-    ></app-err-msg>
-    <app-err-msg
-      *ngIf="
-        hasFormControlError('email') &&
-        loginForm.get('email')?.hasError('email')
-      "
-      message="Wrong email format"
-    ></app-err-msg>
+    <small *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div class="error-message" *ngIf="email.errors?.['required']">
+        Email is required.
+      </div>
+      <div class="error-message" *ngIf="email.errors?.['email']">
+        Email should be valid
+      </div>
+    </small>
     <label for="password">Password</label>
     <input
-      [ngClass]="{ 'input-error': hasFormControlError('password') }"
-      formControlName="password"
       type="password"
-      placeholder="Password"
+      formControlName="password"
+      name="password"
+      placeholder="Type password"
     />
-    <app-err-msg
-      *ngIf="
-        hasFormControlError('password') &&
-        loginForm.get('password')?.hasError('required')
-      "
-      message="Password is required"
-    ></app-err-msg>
-    <app-err-msg
-      *ngIf="
-        hasFormControlError('password') &&
-        loginForm.get('password')?.hasError('minlength')
-      "
-      message="Password must be at least 6 characters long"
-    ></app-err-msg>
+    <small *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div class="error-message" *ngIf="password.errors?.['required']">
+        Password is required.
+      </div>
+    </small>
+    <button [disabled]="loginForm.invalid" type="submit">Log in</button>
+    <div class="register">
+      Not a member? <a routerLink="/register">Register</a>
+    </div>
   </form>
-  <button [disabled]="loginForm.invalid">Log in</button>
-  <div class="register">
-    Not a member? <a routerLink="/register">Register</a>
-  </div>
 </div>

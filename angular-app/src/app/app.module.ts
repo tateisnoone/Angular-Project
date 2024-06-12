@@ -16,8 +16,11 @@ import { FooterComponent } from './footer/footer.component';
 import { ShopComponent } from './shop/shop.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ErrMsgComponent } from './shared/err-msg/err-msg.component';
-//import { AuthComponent } from './services/auth.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageService } from 'primeng/api';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,10 +34,17 @@ import { ErrMsgComponent } from './shared/err-msg/err-msg.component';
     ShopComponent,
     NotFoundComponent,
     ErrMsgComponent,
-    //AuthComponent,
+    HomeComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
-  providers: [provideClientHydration()],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ToastModule,
+    BrowserAnimationsModule,
+  ],
+  providers: [provideClientHydration(), MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

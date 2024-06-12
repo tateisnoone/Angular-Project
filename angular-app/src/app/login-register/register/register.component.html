@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Register</h2>
-  <form [formGroup]="registerForm">
+  <form [formGroup]="registerForm" (ngSubmit)="submitDetails()">
     <label for="fullName">Full Name</label>
     <input
       type="text"
@@ -68,13 +68,7 @@
       Password should match
     </small>
     <!-- </div> -->
-    <button
-      type="submit"
-      (click)="register()"
-      [disabled]="registerForm.invalid"
-    >
-      Register
-    </button>
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
     <div class="register">
       Already registered? <a routerLink="/login">Log In</a>
     </div>

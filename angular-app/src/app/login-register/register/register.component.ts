@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 import { passwordMatchValidator } from '../../shared/password-match.directive';
+import { User } from '../../interfaces/auth';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -22,7 +26,12 @@ export class RegisterComponent {
     }
   );
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private AuthService: AuthService,
+    private messageService: MessageService,
+    private router: Router
+  ) {}
   get fullName() {
     return this.registerForm.controls['fullName'];
   }
@@ -55,9 +64,30 @@ export class RegisterComponent {
   //   ),
   // });
 
-  public register() {
-    console.log(this.registerForm);
+  submitDetails() {
+    const postData = { ...this.registerForm.value };
+    delete postData.confirmPassword;
+    this.AuthService.registerUser(postData as User).subscribe(
+      (response) => {
+        console.log(response);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Registered Successfully',
+        });
+        this.router.navigate(['login']);
+      },
+      (error) => {
+        console.log(error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Something went wrong',
+        });
+      }
+    );
   }
+
   // public hasFormControlError(name: string): boolean {
   //   return (
   //     (this.registerForm.get(name)?.invalid &&
